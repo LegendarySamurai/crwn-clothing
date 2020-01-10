@@ -20,6 +20,11 @@
 
     .option {
       padding: 10px 15px;
+      font-family: inherit;
+      font-size: inherit;
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
     }
   }
 }
