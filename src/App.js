@@ -38,8 +38,6 @@ class App extends React.Component {
 							...snapShot.data()
 						}
 					});
-
-					console.log('APP STATE =>', this.state);
 				});
 			}
 			// if user signs out
@@ -57,9 +55,6 @@ class App extends React.Component {
 	render () {
 		return (
 			<div className="App">
-				{
-					console.log('CURRENT USER =>', this.state.currentUser)
-				}
 				<Header currentUser={ this.state.currentUser }/>
 				<Switch>
 					<Route exact path="/" component={ Homepage }/>
