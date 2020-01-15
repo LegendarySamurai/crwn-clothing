@@ -23,16 +23,30 @@ class App extends React.Component {
 	componentDidMount () {
 		this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
 			// checking if userAuth object is not 'null' (exists)
+			// meaning if a user has signed in
 			if (userAuth) {
+				// createUserProfileDocument returns userRef
 				const userRef = await createUserProfileDocument(userAuth);
 
+				// listening to the moment database has updated at that reference with any new data
+				// 'snapshot' represents data that is currently (in its current state)
+				// stored in our database
 				userRef.onSnapshot(snapShot => {
-					console.log(snapShot.data());
+					this.setState({
+						currentUser: {
+							id: snapShot.id,
+							...snapShot.data()
+						}
+					});
+
+					console.log('APP STATE =>', this.state);
 				});
 			}
-			console.log('LOGGED-IN USER =>',  userAuth);
-
-			this.setState({ currentUser: userAuth });
+			// if user signs out
+			else {
+				// setting current user to 'null'
+				this.setState({ currentUser: userAuth });
+			}
 		});
 	}
 

@@ -27,6 +27,7 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
 		const { displayName, email } = userAuth;
 		const createAt = new Date();
 
+		// this code below creates a Snapshot (data)
 		try {
 			await userRef.set({
 				displayName,
@@ -40,6 +41,7 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
 		}
 	}
 
+	// returning current user in case we want to use the user reference object to do other things
 	return userRef;
 };
 
