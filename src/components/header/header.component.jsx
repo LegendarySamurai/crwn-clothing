@@ -12,11 +12,6 @@ import { connect } from 'react-redux';
 
 const Header = ({ currentUser, open }) => (
 	<header className="header">
-
-		{
-			console.log('INITIAL =>', open)
-		}
-
 		<Link className="logo-container" to="/">
 			<Logo className="logo"/>
 		</Link>

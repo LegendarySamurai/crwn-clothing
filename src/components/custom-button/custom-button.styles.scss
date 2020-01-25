@@ -8,6 +8,9 @@
 }
 
 .custom-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   min-width: 165px;
   width: auto;
   height: 50px;
@@ -35,6 +38,18 @@
 
     &:hover {
       background-color: #357ae8;
+      border: none;
+    }
+  }
+
+  &.inverted {
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+
+    &:hover {
+      color: white;
+      background-color: black;
       border: none;
     }
   }
