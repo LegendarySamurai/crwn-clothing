@@ -5,7 +5,6 @@ import { createStructuredSelector } from 'reselect';
 
 import { setCurrentUser } from './redux/user/user.actions';
 import { selectCurrentUser } from './redux/user/user.selectors';
-import { selectCollectionsForPreview } from './redux/shop/shop.selectors';
 
 import Header from './components/header/header.component';
 import HomePage from './pages/homepage/homepage.component';
