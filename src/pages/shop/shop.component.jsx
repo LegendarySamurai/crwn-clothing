@@ -8,9 +8,17 @@ import { updateCollections } from '../../redux/shop/shop.actions';
 import CollectionsOverview from '../../components/collections-overview/collections-overview.component';
 import CollectionPage from '../collection/collection.component';
 
+import WithSpinner from '../../components/with-spinner/with-spinner.component';
+
 import './shop.styles.scss';
 
+const CollectionsOverviewWithSpinner = WithSpinner(CollectionsOverview);
+const CollectionPageWithSpinner = WithSpinner(CollectionPage);
+
 class ShopPage extends React.Component {
+	state = {
+		loading: true
+	};
 
 	// the snapshot is going to be the snapshot representation of
 	// of our collections array that we are going to get from Firestore
@@ -30,6 +38,8 @@ class ShopPage extends React.Component {
 		this.unsubscribeFromSnapshot = collectionRef.onSnapshot(async snapshot => {
 			const collectionsMap = convertCollectionsSnapshotToMap(snapshot);
 			updateCollections(collectionsMap);
+
+			this.setState({ loading: false });
 		});
 	}
 
@@ -39,11 +49,19 @@ class ShopPage extends React.Component {
 
 	render () {
 		const { match } = this.props;
+		const { loading } = this.state;
 
 		return (
 			<div className="shop-page">
-				<Route path={ `${ match.path }`} exact component={ CollectionsOverview } />
-				<Route path={`${ match.path }/:collectionId`} exact component={ CollectionPage } />
+				<Route
+					path={ `${ match.path }` }
+					exact
+					render={ props => <CollectionsOverviewWithSpinner isLoading={ loading } { ...props } /> }
+				/>
+				<Route
+					path={ `${ match.path }/:collectionId` }
+					render={ props => <CollectionPageWithSpinner isLoading={ loading } { ...props } /> }
+				/>
 			</div>
 		)
 	}
