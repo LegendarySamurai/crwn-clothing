@@ -12,6 +12,10 @@ export const PreviewContainer = styled.div`
 `;
 
 export const TitleContainer = styled.div`
-	font-size: 28px;
   margin-bottom: 25px;
+`;
+
+export const Title = styled.span`
+	font-size: 28px;
+  cursor: pointer;
 `;
