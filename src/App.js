@@ -22,28 +22,32 @@ class App extends React.Component {
 		const { setCurrentUser } = this.props;
 
 		this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
-			// checking if userAuth object is not 'null' (exists)
-			// meaning if a user has signed in
-			if (userAuth) {
-				// createUserProfileDocument returns userRef
-				const userRef = await createUserProfileDocument(userAuth);
+				// checking if userAuth object is not 'null' (exists)
+				// meaning if a user has signed in
+				if (userAuth) {
+					// createUserProfileDocument returns userRef
+					const userRef = await createUserProfileDocument(userAuth);
 
-				// listening to the moment database has updated at that reference with any new data
-				// 'snapshot' represents data that is currently (in its current state)
-				// stored in our database
-				userRef.onSnapshot(snapShot => {
-					setCurrentUser({
-						id: snapShot.id,
-						...snapShot.data()
-					})
-				});
+					// listening to the moment database has updated at that reference with any new data
+					// 'snapshot' represents data that is currently (in its current state)
+					// stored in our database
+					userRef.onSnapshot(snapShot => {
+						setCurrentUser({
+							id: snapShot.id,
+							...snapShot.data()
+						})
+					});
+				}
+				// if user signs out
+				else {
+					// setting current user to 'null'
+					setCurrentUser(userAuth);
+				}
+			},
+			error => {
+				console.log(error)
 			}
-			// if user signs out
-			else {
-				// setting current user to 'null'
-				setCurrentUser(userAuth);
-			}
-		});
+		);
 	}
 
 	componentWillUnmount () {
@@ -62,7 +66,7 @@ class App extends React.Component {
 						render={ () => this.props.currentUser ? (<Redirect to='/'/>) : (<SignInPage/>) }
 					/>
 					<Route path="/shop" component={ ShopPage }/>
-					<Route path="/checkout" exact component={ CheckoutPage } />
+					<Route path="/checkout" exact component={ CheckoutPage }/>
 				</Switch>
 			</div>
 		);
