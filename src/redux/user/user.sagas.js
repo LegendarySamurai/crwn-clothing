@@ -13,7 +13,6 @@ export function* signInWithGoogle () {
 	try {
 		const { user } = yield auth.signInWithPopup(googleProvider);
 
-		console.log('USER =>', user);
 		const userRef = yield call(createUserProfileDocument, user);
 		const userSnapshot = yield userRef.get();
 

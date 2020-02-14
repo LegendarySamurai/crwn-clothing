@@ -10,7 +10,7 @@ import { ButtonsContainer } from '../custom-button/custom-button.styles';
 import FormInput from '../form-input/form-input.component';
 import CustomButton from '../custom-button/custom-button.component';
 
-import { auth, signInWithGoogle, signInWithFacebook } from '../../firebase/firebase.utils';
+import { auth, signInWithFacebook } from '../../firebase/firebase.utils';
 import { googleSignInStart } from '../../redux/user/user.actions';
 
 class SignIn extends React.Component {
@@ -84,6 +84,7 @@ class SignIn extends React.Component {
 						>
 							Sign In With Google
 						</CustomButton>
+
 						<CustomButton type="button" onClick={ signInWithFacebook }>
 							Sign In With Facebook
 						</CustomButton>
