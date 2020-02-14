@@ -21,6 +21,7 @@ class App extends React.Component {
 	componentDidMount () {
 		const { setCurrentUser } = this.props;
 
+		/*
 		this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
 				// checking if userAuth object is not 'null' (exists)
 				// meaning if a user has signed in
@@ -48,6 +49,8 @@ class App extends React.Component {
 				console.log(error)
 			}
 		);
+		*/
+
 	}
 
 	componentWillUnmount () {

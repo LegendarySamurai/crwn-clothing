@@ -94,20 +94,20 @@ export const convertCollectionsSnapshotToMap = collectionsSnapshot => {
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 
-const provider = new firebase.auth.GoogleAuthProvider();
-const providerFacebook = new firebase.auth.FacebookAuthProvider();
+export const googleProvider = new firebase.auth.GoogleAuthProvider();
+export const facebookProvider = new firebase.auth.FacebookAuthProvider();
 
 // triggering the google popup (when using GoogleAuthProvider() for authentication and sign in)
-provider.setCustomParameters({
+googleProvider.setCustomParameters({
 	prompt: 'select_account'
 });
 
-providerFacebook.setCustomParameters({
+facebookProvider.setCustomParameters({
 	'display': 'popup'
 });
 
-export const signInWithGoogle = () => auth.signInWithPopup(provider);
-export const signInWithFacebook = () => auth.signInWithPopup(providerFacebook);
+export const signInWithGoogle = () => auth.signInWithPopup(googleProvider);
+export const signInWithFacebook = () => auth.signInWithPopup(facebookProvider);
 
 export default firebase;
 
