@@ -28,7 +28,8 @@ export const fetchCollectionsStartAsync = () => dispatch => {
 	dispatch(fetchCollectionsStart());
 
 	// here 'asynchronous request' begins
-	collectionRef.get()
+	collectionRef
+		.get()
 		.then(snapshot => {
 			// building the 'collectionMap'
 			const collectionsMap = convertCollectionsSnapshotToMap(snapshot);
